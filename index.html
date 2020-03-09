@@ -286,17 +286,7 @@
                 }
             }
 
-            lessonButtonPrev.onclick = function (event) {
-                if (lessonCurrentId - 1 >= 0)
-                    displayLesson(lessonCurrentId - 1);
-            }
-
-            lessonButtonNext.onclick = function (event) {
-                if (lessonCurrentId + 1 < lessons.length)
-                    displayLesson(lessonCurrentId + 1);
-            }
-
-            lessonInput.onkeyup = function (event) {
+            function onTextChange() {
                 var regex = null;
 
                 lessonInputColorized.innerHTML = RegexColorizer.colorizeText(lessonInput.value)
@@ -327,6 +317,24 @@
                 var btn = (lessonCurrentId + 1) === lessons.length ?
                     lessonButtonFinish : lessonButtonNext;
                 lessonButtonAttribute(btn, "disabled", !enabled);
+            }
+
+            lessonButtonPrev.onclick = function (event) {
+                if (lessonCurrentId - 1 >= 0)
+                    displayLesson(lessonCurrentId - 1);
+            }
+
+            lessonButtonNext.onclick = function (event) {
+                if (lessonCurrentId + 1 < lessons.length)
+                    displayLesson(lessonCurrentId + 1);
+            }
+
+            lessonInput.onchange = function (event) {
+                onTextChange();
+            }
+
+            lessonInput.onkeyup = function (event) {
+                onTextChange();
             }
 
             displayLesson(0);
