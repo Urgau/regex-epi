@@ -1,0 +1,335 @@
+<!doctype html>
+<html lang="en">
+    <head>
+        <!-- Required meta tags -->
+        <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+        <!-- Bootstrap CSS -->
+        <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
+
+        <!-- Regex Colorize -->
+        <link rel="stylesheet" href="http://stevenlevithan.com/regex/colorizer/themes/default.css">
+
+        <title>Regex - Workshop</title>
+    </head>
+    <body>
+        <nav class="navbar navbar-light sticky-top bg-light">
+            <span class="navbar-brand mb-0 h1">Regex - Workshop</span>
+        </nav>
+
+        <div class="jumbotron mb-0 pb-4" style="height: 90vh" id="lesson">
+            <h1 class="display-5" id="lesson-title">Title</h1>
+            <p class="lead" id="lesson-description">Description</p>
+
+            <div class="input-group mb-2">
+                <div class="input-group-prepend">
+                    <span class="input-group-text">^</span>
+                </div>
+                <input type="text" class="form-control" id="lesson-input">
+                <div class="input-group-append">
+                    <span class="input-group-text">$</span>
+                </div>
+            </div>
+
+            <div class="alert alert-light regex" role="alert" id="lesson-input-colorized" ></div>
+            <div class="alert alert-danger" role="alert" id="lesson-label-error" hidden></div>
+
+            <div class="container mt-5 mb-5">
+                <div class="row">
+                    <div class="col">
+                        <h5 class="display-5">Valid cases:</h2>
+                    </div>
+                    <div class="col">
+                        <h5 class="display-5">Invalid cases:</h2>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col">
+                        <ul class="list-group" id="lesson-tests-should-pass" />
+                    </div>
+                    <div class="col">
+                        <ul class="list-group" id="lesson-tests-should-not-pass" />
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Bottom nav -->
+        <nav class="navbar navbar-light fixed-bottom bg-light">
+            <div class="container-fluid">
+                <div class="row w-100">
+                    <div class="col-md-auto">
+                        <button type="button" class="btn btn-primary" id="lesson-btn-prev" disabled>Previous</button>
+                    </div>
+                    <div class="col my-auto">
+                        <div class="progress" style="height: 1.3rem">
+                            <div class="progress-bar" role="progressbar" style="width: 0%" aria-valuenow="0" aria-valuemin="0" aria-valuemax="100" id="lesson-current-advance">0%</div>
+                        </div>
+                    </div>
+                    <div class="col-md-auto">
+                        <button type="button" class="btn btn-primary" id="lesson-btn-next" disabled>Next</button>
+                        <button type="button" class="btn btn-primary" id="lesson-btn-finish" data-toggle="modal" data-target="#lesson-modal-finish" disabled hidden>Finish</button>
+                    </div>
+                </div>
+            </div>
+        </nav>
+
+        <!-- Modal -->
+        <div class="modal fade" id="lesson-modal-finish" tabindex="-1" role="dialog" aria-hidden="true">
+            <div class="modal-dialog modal-dialog-centered" role="document">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h5 class="modal-title" id="exampleModalLongTitle">Regex - Workshop</h5>
+                    </div>
+                    <div class="modal-body">
+                        <p>Congratulation you have finish. :-)</p>
+                        <img src="https://media.giphy.com/media/xT0xezQGU5xCDJuCPe/giphy.gif" class="img-fluid">
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-primary" data-dismiss="modal">Close</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Optional JavaScript -->
+        <!-- jQuery first, then Popper.js, then Bootstrap JS -->
+        <script src="https://code.jquery.com/jquery-3.4.1.slim.min.js" integrity="sha384-J6qa4849blE2+poT4WnyKhv5vZF5SrPo0iEjwBvKU7imGFAV0wwj1yYfoRSJoZ+n" crossorigin="anonymous"></script>
+        <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js" integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo" crossorigin="anonymous"></script>
+        <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js" integrity="sha384-wfSDF2E50Y2D1uUdj0O3uMBJnjuUD4Ih7YwaYd1iqfktj0Uod8GCExl3Og8ifwB6" crossorigin="anonymous"></script>
+        <script src="http://stevenlevithan.com/regex/colorizer/regex-colorizer.js"></script>
+
+        <script>
+            class Lesson {
+                constructor(title, description, valids, invalids) {
+                    this.title = title;
+                    this.description = description;
+                    this.valids = valids;
+                    this.invalids = invalids;
+                }
+            }
+
+            var lessonCurrentId = 0;
+            var lessons = [
+                new Lesson("Basics - match single digit",
+                    "Write regular expression into input - regex will be automagically tested.\nAll Input cases should be green. Try to match 1 single digit from 0 - 9.",
+                    ["0", "5", "9"],
+                    ["a", "10", "1b"]),
+                new Lesson("Basics - match number (more digits)",
+                    "Try to match 2-5 digits number.",
+                    ["10", "516", "55565"],
+                    ["a", "1", "1b", "number", "666666"]),
+                new Lesson("Basics - match abc",
+                    "Try to match texts like `abc`, `aac`, `bcaabc`, etc. Basically only strings from letters `a`, `b` or `c`.",
+                    ["abc", "cbaa", "a"],
+                    ["abcd", "d", "1b"]),
+                new Lesson("Basics - opposite",
+                    "Try to match all words where are not `a` , `b`, or `c` letters.",
+                    ["knowledge", "efghij", "su_ki"],
+                    ["regular", "credit", "scary"]),
+                new Lesson("Characters ranges",
+                    "Try to match two words. First world should be composed from only lowercase letters from `a` to `g`.\nSecond word should not use uppercase letters from `A` to `G`.",
+                    ["abcdefg MatchMe2", "a maTch4H", "def 2", "abc KLM"],
+                    ["hhh 45", "God fat", "abc ABC", "abc F"]),
+                new Lesson("Capture groups",
+                    "You should try to use groups to capture items in brackets [] and ().\nDont forget to escape special chars with backslash. If you did it fine, your group should have captured:\n0) // not important //\n1) code\n2) 123",
+                    [["Try to capture [code] and only (123) number inside.", "code", "123"]], // .*\[([a-z]*)\].*\(([0-9]*)\).*
+                    ["This is invalid |kk| and [ll]"]),
+                new Lesson("Email format verification",
+                    "Verify email format. You should also capture email domain into group 1.",
+                    [
+                        ["name@email.com", "email.com"],
+                        ["n@email.ch", "email.ch"],
+                        ["my@o.paris", "o.paris"]
+                    ],
+                    ["@mail.com", "name@.com", "name@missing", "spe*cial@email.com"]),
+                new Lesson("Palindrome",
+                    "Try to match 4 letters palindrome.\nHINT: You can get capturing groups by \\N - where N stands for captured group index.",
+                    ["akka", "bccb", "MooM"],
+                    ["akkk", "abdc", "numberii1345", "notLetters"]),
+                new Lesson("Lookahead!",
+                    "Try to match only string not containing digit and character `a`.\nText must contain at least 2 characters `o`, or `i`.",
+                    ["no_more_numbers", "noDigits", "bcdefghiiklmnopr"],
+                    ["character_oo", "ggikilap", "numberii1345", "notLetters"]),
+                new Lesson("Telephone number", // \+{0,1}(\d{3} *\d{3} *|\d{4}) *\d{3} *\d{3}
+                    "Now we can try to match telephone number. Write regex to match all test numbers.",
+                    ["+421901264523", "+421 901 264 523", "0907236542", "0907 236 542"],
+                    ["notNumbers", "+france", "21 901 265 563", "09012364565"]),
+                new Lesson("HTML Content tag fetcher",
+                    "You should also capture the tag type into group 1 and the content of the tag into group 2.",  // <([a-z][a-z0-9]*)\b[^>]*>(.*?)<\/\1>
+                    [
+                        ["<p>aaa</p>", "p", "aaa"],
+                        ["<p test='kk' >HELLO</p>", "p", "HELLO"],
+                        ["<div disabled>texte</div>", "texte", "disabled"]
+                    ],
+                    ["<p>false</div>", "</br>", "<p>missing", "<m></l>"]),
+            ];
+            var lessonInputs = (new Array(lessons.length)).fill("");
+
+            var lessonTitle = document.getElementById("lesson-title");
+            var lessonInput = document.getElementById("lesson-input");
+            var lessonInputColorized = document.getElementById("lesson-input-colorized");
+            var lessonButtonNext = document.getElementById("lesson-btn-next");
+            var lessonButtonPrev = document.getElementById("lesson-btn-prev");
+            var lessonButtonFinish = document.getElementById("lesson-btn-finish");
+            var lessonDescription = document.getElementById("lesson-description");
+            var lessonLabelError = document.getElementById("lesson-label-error");
+            var lessonCurrentAdvance = document.getElementById("lesson-current-advance");
+            var lessonTestsShouldPass = document.getElementById("lesson-tests-should-pass");
+            var lessonTestsShouldNotPass = document.getElementById("lesson-tests-should-not-pass");
+
+            function createVisualTest(elements, test) {
+                /*
+                 *  <li class="list-group-item d-flex justify-content-between align-items-center">
+                 *      Cras justo odio
+                 *      <span class="badge badge-primary badge-pill">14</span>
+                 *  </li>
+                 */
+
+                var name = Array.isArray(test) ? test[0] : test;
+                var li = document.createElement("li");
+                var span = document.createElement("span");
+
+                li.classList.add("list-group-item");
+                li.classList.add("d-flex");
+                li.classList.add("justify-content-between");
+                li.classList.add("align-items-center");
+                li.innerText = name;
+
+                span.classList.add("badge");
+                span.classList.add("badge-pill");
+                span.classList.add("badge-danger");
+                span.innerText = "X";
+                span.id = "test_" + name;
+
+                li.appendChild(span);
+                elements.appendChild(li);
+            }
+
+            function lessonButtonAttribute(btn, name, enabled) {
+                if (enabled === true)
+                    btn.setAttribute(name, "");
+                else
+                    btn.removeAttribute(name);
+            }
+
+            function displayLesson(id) {
+                lessonInputs[lessonCurrentId] = lessonInput.value;
+                lessonCurrentId = id;
+
+                lessonTitle.innerText = lessons[id].title;
+                lessonDescription.innerText = lessons[id].description;
+
+                lessonInput.value = lessonInputs[id];
+                lessonInputColorized.innerHTML = "";
+                lessonTestsShouldPass.innerHTML = "";
+                lessonTestsShouldNotPass.innerHTML = "";
+
+                var percentage = 100 * ((id + 1) / lessons.length);
+                lessonCurrentAdvance.setAttribute("style", "width: " + percentage + "%");
+                lessonCurrentAdvance.setAttribute("aria-value-now", percentage);
+                lessonCurrentAdvance.innerText = (id + 1) + "/" + lessons.length;
+
+                lessons[id].valids.forEach(test => createVisualTest(lessonTestsShouldPass, test));
+                lessons[id].invalids.forEach(test => createVisualTest(lessonTestsShouldNotPass, test));
+
+                var isLast = (id + 1) === lessons.length;
+                lessonButtonAttribute(lessonButtonPrev, "disabled", id == 0);
+                lessonButtonAttribute(lessonButtonNext, "disabled", true);
+                lessonButtonAttribute(lessonButtonNext, "hidden", isLast);
+                lessonButtonAttribute(lessonButtonFinish, "hidden", !isLast);
+            }
+
+            function setTestStatus(name, status) {
+                var test = document.getElementById("test_" + name);
+
+                test.classList.remove("badge-" + (status === "danger" ? "success" : "danger"));
+                test.classList.add("badge-" + status);
+                test.innerText = status === "danger" ? "X" : "V";
+            }
+
+            function compare(arr1,arr2){
+                if (!arr1 || !arr2) return false
+                if (arr1.length !== arr2.length) return false
+
+                arr1.forEach(e1 => arr2.forEach(e2 => {
+                    if (e1 !== e2)
+                        return false;
+                }))
+                return true
+            }
+
+            function checkTestMatch(regex, test, cond) {
+                var name = Array.isArray(test) ? test[0] : test;
+
+                if (regex === null) {
+                    setTestStatus(name, "danger");
+                    return false;
+                } else {
+                    var result = false;
+
+                    if (Array.isArray(test) === false) {
+                        result = name.match(regex) !== null;
+                    } else {
+                        var matches = name.matchAll(regex);
+
+                        for (const match of matches) {
+                            result = compare(match.slice(1), test.slice(1));
+                        }
+                    }
+
+                    if (cond === "invalid")
+                        result = !result;
+                    setTestStatus(name, result === false ? "danger" : "success");
+                    return result;
+                }
+            }
+
+            lessonButtonPrev.onclick = function (event) {
+                if (lessonCurrentId - 1 >= 0)
+                    displayLesson(lessonCurrentId - 1);
+            }
+
+            lessonButtonNext.onclick = function (event) {
+                if (lessonCurrentId + 1 < lessons.length)
+                    displayLesson(lessonCurrentId + 1);
+            }
+
+            lessonInput.onkeyup = function (event) {
+                var regex = null;
+
+                lessonInputColorized.innerHTML = RegexColorizer.colorizeText(lessonInput.value)
+                try {
+                    if (lessonInput.value !== "")
+                        regex = new RegExp("^" + lessonInput.value + "$", "gm");
+
+                    lessonButtonAttribute(lessonLabelError, "hidden", true);
+                    lessonLabelError.innerText = "";
+                } catch (error) {
+                    lessonButtonAttribute(lessonLabelError, "hidden", false);
+                    lessonLabelError.innerText = error;
+                }
+
+                var totalTests = 0;
+                var totalTestsPass = 0;
+
+                lessons[lessonCurrentId].valids.forEach(function (name) {
+                    totalTestsPass += checkTestMatch(regex, name, "valid");
+                    totalTests += 1;
+                });
+                lessons[lessonCurrentId].invalids.forEach(function (name) {
+                    totalTestsPass += checkTestMatch(regex, name, "invalid");
+                    totalTests += 1;
+                });
+
+                var enabled = totalTestsPass === totalTests;
+                var btn = (lessonCurrentId + 1) === lessons.length ?
+                    lessonButtonFinish : lessonButtonNext;
+                lessonButtonAttribute(btn, "disabled", !enabled);
+            }
+
+            displayLesson(0);
+        </script>
+    </body>
+</html>
