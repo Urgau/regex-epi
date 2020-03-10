@@ -156,6 +156,13 @@
                     "Now we can try to match telephone number. Write regex to match all test numbers.",
                     ["+421901264523", "+421 901 264 523", "0907236542", "0907 236 542"],
                     ["notNumbers", "+france", "21 901 265 563", "09012364565"]),
+                new Lesson("HTML Content fetcher",
+                    "You should capture the content into group 1.",  // <TAG\b[^>]*>(.*?)<\/TAG>
+                    [
+                        ["<TAG>one<TAG>two</TAG>one</TAG>", "one<TAG>two"],
+                        ["<TAG></TAG>", ""],
+                    ],
+                    ["<TAG>TAGccc", "<TAG qq=qbc 7/>", "<TAG>hhh<TAG>"]),
                 new Lesson("HTML Content tag fetcher",
                     "You should also capture the tag type into group 1 and the content of the tag into group 2.",  // <([a-z][a-z0-9]*)\b[^>]*>(.*?)<\/\1>
                     [
