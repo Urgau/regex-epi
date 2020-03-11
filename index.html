@@ -113,7 +113,7 @@
             var lessonCurrentId = 0;
             var lessons = [
                 new Lesson("Introduction",
-                    "Regex : For all exercices we recommand that you check out and use <a href='https://regex101.com'>regex101.com</a>. For this first exercice we want you to match a simple word.<br>HINT : a word is allways a word.",
+                    "Regex : For all exercices we recommand that you check out and use <a target='_blank' href='https://regex101.com'>regex101.com</a>. For this first exercice we want you to match a simple word.<br>HINT : a word is allways a word.",
                     ["yes"],
                     ["no"]),
                 new Lesson("Basics - match single digit",
@@ -136,10 +136,18 @@
                     "Try to match a character followed a number",
                     ["a0", "b277", "y9999"],
                     ["s", "8", "98e", "io6"]),
+                new Lesson("Basics - handeling special characters", // \[
+                    "Try to match spetial character \"[\".",
+                    ["["],
+                    ["a"]),
                 new Lesson("Characters ranges",
                     "Try to match two words. First world should be composed from only lowercase letters from `a` to `g`.<br>Second word should not use uppercase letters from `A` to `G`.",
                     ["abcdefg MatchMe2", "a maTch4H", "def 2", "abc KLM"],
                     ["hhh 45", "God fat", "abc ABC", "abc F"]),
+                new Lesson("Or matching", // ^[a-z]{2}\d{3}$|^\d{3}[a-z]{2}$
+                    "Try to match a word composed by 2 characters followed by 3 digits or composed by 3 digits followed by 2 characters.<br>Be careful to begin and end line with adapted token.",
+                    ["ab123", "er404", "382gf", "206mk"],
+                    ["abc123", "a457", "67ui", "9999hf"]),
                 new Lesson("Capture groups",
                     "You should try to use groups to capture items in brackets [] and ().<br>Dont forget to escape special chars with backslash. If you did it fine, your group should have captured:<br>0) // not important //<br>1) code<br>2) 123",
                     [["Try to capture [code] and only (123) number inside.", "code", "123"]], // .*\[([a-z]*)\].*\(([0-9]*)\).*
