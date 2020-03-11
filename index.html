@@ -112,12 +112,12 @@
 
             var lessonCurrentId = 0;
             var lessons = [
-                new Lesson("Basics - Introduction",
-                    "Regex : For all exercices we recommand that you check out and use <a href="https://regex101.com">regex101.com</a>. For this first exercice we want you to match a simple word. HINT : a word is allways a word."
+                new Lesson("Introduction",
+                    "Regex : For all exercices we recommand that you check out and use <a href='https://regex101.com'>regex101.com</a>. For this first exercice we want you to match a simple word.<br>HINT : a word is allways a word.",
                     ["yes"],
                     ["no"]),
                 new Lesson("Basics - match single digit",
-                    "Write regular expression into input - regex will be automagically tested.\nAll Input cases should be green. Try to match 1 single digit from 0 - 9.",
+                    "Write regular expression into input - regex will be automagically tested.<br>All Input cases should be green. Try to match 1 single digit from 0 - 9.",
                     ["0", "5", "9"],
                     ["a", "10", "1b"]),
                 new Lesson("Basics - match number (more digits)",
@@ -132,12 +132,16 @@
                     "Try to match all words where are not `a` , `b`, or `c` letters.",
                     ["knowledge", "efghij", "su_ki"],
                     ["regular", "credit", "scary"]),
+                new Lesson("Basics - match char followed by number",
+                    "Try to match a character followed a number",
+                    ["a0", "b277", "y9999"],
+                    ["s", "8", "98e", "io6"]),
                 new Lesson("Characters ranges",
-                    "Try to match two words. First world should be composed from only lowercase letters from `a` to `g`.\nSecond word should not use uppercase letters from `A` to `G`.",
+                    "Try to match two words. First world should be composed from only lowercase letters from `a` to `g`.<br>Second word should not use uppercase letters from `A` to `G`.",
                     ["abcdefg MatchMe2", "a maTch4H", "def 2", "abc KLM"],
                     ["hhh 45", "God fat", "abc ABC", "abc F"]),
                 new Lesson("Capture groups",
-                    "You should try to use groups to capture items in brackets [] and ().\nDont forget to escape special chars with backslash. If you did it fine, your group should have captured:\n0) // not important //\n1) code\n2) 123",
+                    "You should try to use groups to capture items in brackets [] and ().<br>Dont forget to escape special chars with backslash. If you did it fine, your group should have captured:<br>0) // not important //<br>1) code<br>2) 123",
                     [["Try to capture [code] and only (123) number inside.", "code", "123"]], // .*\[([a-z]*)\].*\(([0-9]*)\).*
                     ["This is invalid |kk| and [ll]"]),
                 new Lesson("Email format verification",
@@ -149,11 +153,11 @@
                     ],
                     ["@mail.com", "name@.com", "name@missing", "spe*cial@email.com"]),
                 new Lesson("Palindrome",
-                    "Try to match 4 letters palindrome.\nHINT: You can get capturing groups by \\N - where N stands for captured group index.",
+                    "Try to match 4 letters palindrome.<br>HINT: You can get capturing groups by \\N - where N stands for captured group index.",
                     ["akka", "bccb", "MooM"],
                     ["akkk", "abdc", "numberii1345", "notLetters"]),
                 new Lesson("Lookahead!",
-                    "Try to match only string not containing digit and character `a`.\nText must contain at least 2 characters `o`, or `i`.",
+                    "Try to match only string not containing digit and character `a`.<br>Text must contain at least 2 characters `o`, or `i`.",
                     ["no_more_numbers", "noDigits", "bcdefghiiklmnopr"],
                     ["character_oo", "ggikilap", "numberii1345", "notLetters"]),
                 new Lesson("Telephone number", // \+{0,1}(\d{3} *\d{3} *|\d{4}) *\d{3} *\d{3}
@@ -230,7 +234,7 @@
                 lessonCurrentId = id;
 
                 lessonTitle.innerText = lessons[id].title;
-                lessonDescription.innerText = lessons[id].description;
+                lessonDescription.innerHTML = lessons[id].description;
 
                 lessonInput.value = lessonInputs[id];
                 lessonInputColorized.innerHTML = "";
