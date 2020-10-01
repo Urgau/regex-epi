@@ -102,11 +102,12 @@
 
         <script>
             class Lesson {
-                constructor(title, description, valids, invalids) {
+                constructor(title, description, valids, invalids, solution) {
                     this.title = title;
                     this.description = description;
                     this.valids = valids;
                     this.invalids = invalids;
+                    this.solution = solution;
                 }
             }
 
@@ -115,43 +116,53 @@
                 new Lesson("Introduction",
                     "Regex : For all exercices we recommand that you check out and use <a target='_blank' href='https://regex101.com'>regex101.com</a>. For this first exercice we want you to match a simple word.<br>HINT : a word is allways a word.",
                     ["yes"],
-                    ["no"]),
+                    ["no"],
+                    "yes"),
                 new Lesson("Basics - match single digit",
                     "Write regular expression into input - regex will be automagically tested.<br>All Input cases should be green. Try to match 1 single digit from 0 - 9.",
                     ["0", "5", "9"],
-                    ["a", "10", "1b"]),
+                    ["a", "10", "1b"],
+                    "[0-9]"),
                 new Lesson("Basics - match number (more digits)",
                     "Try to match 2-5 digits number.",
                     ["10", "516", "55565"],
-                    ["a", "1", "1b", "number", "666666"]),
+                    ["a", "1", "1b", "number", "666666"],
+                    "[0-9]{2,5}"),
                 new Lesson("Basics - match abc",
                     "Try to match texts like `abc`, `aac`, `bcaabc`, etc. Basically only strings from letters `a`, `b` or `c`.",
                     ["abc", "cbaa", "a"],
-                    ["abcd", "d", "1b"]),
+                    ["abcd", "d", "1b"],
+                    "[abc]*"),
                 new Lesson("Basics - opposite",
                     "Try to match all words where are not `a` , `b`, or `c` letters.",
                     ["knowledge", "efghij", "su_ki"],
-                    ["regular", "credit", "scary"]),
+                    ["regular", "credit", "scary", ""],
+                    "[^abc]+"),
                 new Lesson("Basics - match char followed by number",
                     "Try to match a character followed a number",
                     ["a0", "b277", "y9999"],
-                    ["s", "8", "98e", "io6"]),
-                new Lesson("Basics - handeling special characters", // \[
+                    ["s", "8", "98e", "io6"],
+                    "[a-z][0-9]+"),
+                new Lesson("Basics - handeling special characters",
                     "Try to match spetial character \"[\".",
                     ["["],
-                    ["a"]),
+                    ["a"],
+                    "\\["),
                 new Lesson("Characters ranges",
                     "Try to match two words. First world should be composed from only lowercase letters from `a` to `g`.<br>Second word should not use uppercase letters from `A` to `G`.",
                     ["abcdefg MatchMe2", "a maTch4H", "def 2", "abc KLM"],
-                    ["hhh 45", "God fat", "abc ABC", "abc F"]),
+                    ["hhh 45", "God fat", "abc ABC", "abc F"],
+                    "[a-g]+ [^A-G]+"),
                 new Lesson("Or matching", // ^[a-z]{2}\d{3}$|^\d{3}[a-z]{2}$
                     "Try to match a word composed by 2 characters followed by 3 digits or composed by 3 digits followed by 2 characters.<br>Be careful to begin and end line with adapted token.",
                     ["ab123", "er404", "382gf", "206mk"],
-                    ["abc123", "a457", "67ui", "9999hf"]),
+                    ["abc123", "a457", "67ui", "9999hf"],
+                    "^[a-z]{2}\\d{3}$|^\\d{3}[a-z]{2}$"),
                 new Lesson("Capture groups",
                     "You should try to use groups to capture items in brackets [] and ().<br>Dont forget to escape special chars with backslash. If you did it fine, your group should have captured:<br>0) // not important //<br>1) code<br>2) 123",
-                    [["Try to capture [code] and only (123) number inside.", "code", "123"]], // .*\[([a-z]*)\].*\(([0-9]*)\).*
-                    ["This is invalid |kk| and [ll]"]),
+                    [["Try to capture [code] and only (123) number inside.", "code", "123"]],
+                    ["This is invalid |kk| and [ll]"],
+                    ".*\\[([a-z]*)\\].*\\(([0-9]*)\\).*"),
                 new Lesson("Email format verification",
                     "Verify email format. You should also capture email domain into group 1.",
                     [
@@ -159,26 +170,31 @@
                         ["n@email.ch", "email.ch"],
                         ["my@o.paris", "o.paris"]
                     ],
-                    ["@mail.com", "name@.com", "name@missing", "spe*cial@email.com"]),
+                    ["@mail.com", "name@.com", "name@missing", "spe*cial@email.com"],
+                    "[a-z]+@([a-z]+\\.[a-z]+)"),
                 new Lesson("Palindrome",
                     "Try to match 4 letters palindrome.<br>HINT: You can get capturing groups by \\N - where N stands for captured group index.",
-                    ["akka", "bccb", "MooM"],
-                    ["akkk", "abdc", "numberii1345", "notLetters"]),
+                    ["akka", "bccb", "MooM", "O00O"],
+                    ["akkk", "abdc", "numberii1345", "notLetters"],
+                    "(.)(.)\\2\\1"),
                 new Lesson("Lookahead!",
                     "Try to match only string not containing digit and character `a`.<br>Text must contain at least 2 characters `o`, or `i`.",
                     ["no_more_numbers", "noDigits", "bcdefghiiklmnopr"],
-                    ["character_oo", "ggikilap", "numberii1345", "notLetters"]),
+                    ["character_oo", "ggikilap", "numberii1345", "notLetters"],
+                    "n/a"),
                 new Lesson("Telephone number", // \+{0,1}(\d{3} *\d{3} *|\d{4}) *\d{3} *\d{3}
                     "Now we can try to match telephone number. Write regex to match all test numbers.",
                     ["+421901264523", "+421 901 264 523", "0907236542", "0907 236 542"],
-                    ["notNumbers", "+france", "21 901 265 563", "09012364565"]),
+                    ["notNumbers", "+france", "21 901 265 563", "09012364565"],
+                    "\\+{0,1}(\\d{3} *\\d{3} *|\\d{4}) *\\d{3} *\\d{3}"),
                 new Lesson("HTML Content fetcher",
                     "You should capture the content into group 1.",  // <TAG\b[^>]*>(.*?)<\/TAG>
                     [
                         ["<TAG>one<TAG>two</TAG>one</TAG>", "one<TAG>two"],
                         ["<TAG></TAG>", ""],
                     ],
-                    ["<TAG>TAGccc", "<TAG qq=qbc 7/>", "<TAG>hhh<TAG>"]),
+                    ["<TAG>TAGccc", "<TAG qq=qbc 7/>", "<TAG>hhh<TAG>"],
+                    "<TAG\\b[^>]*>(.*?)<\\/TAG>"),
                 new Lesson("HTML Content tag fetcher",
                     "You should also capture the tag type into group 1 and the content of the tag into group 2.",  // <([a-z][a-z0-9]*)\b[^>]*>(.*?)<\/\1>
                     [
@@ -186,7 +202,8 @@
                         ["<p test='kk' >HELLO</p>", "p", "HELLO"],
                         ["<div disabled>texte</div>", "texte", "disabled"]
                     ],
-                    ["<p>false</div>", "</br>", "<p>missing", "<m></l>"]),
+                    ["<p>false</div>", "</br>", "<p>missing", "<m></l>"],
+                    "<([a-z][a-z0-9]*)\\b[^>]*>(.*?)<\\/\\1>"),
             ];
             var lessonInputs = (new Array(lessons.length)).fill("");
 
@@ -203,6 +220,7 @@
             var lessonTestsShouldNotPass = document.getElementById("lesson-tests-should-not-pass");
 
             var urlSearchParams = new URLSearchParams(window.location.search)
+            var showSolution = false;
 
             function createVisualTest(elements, test) {
                 /*
@@ -220,7 +238,10 @@
                 li.classList.add("d-flex");
                 li.classList.add("justify-content-between");
                 li.classList.add("align-items-center");
-                li.innerText = name;
+                if (name === "")
+                    li.innerText = "(empty)"
+                else
+                    li.innerText = name;
 
                 span.classList.add("badge");
                 span.classList.add("badge-pill");
@@ -246,7 +267,8 @@
                 lessonTitle.innerText = lessons[id].title;
                 lessonDescription.innerHTML = lessons[id].description;
 
-                lessonInput.value = lessonInputs[id];
+                lessonInput.value = showSolution === false ?
+                    lessonInputs[id] : lessons[id].solution;
                 lessonInputColorized.innerHTML = "";
                 lessonTestsShouldPass.innerHTML = "";
                 lessonTestsShouldNotPass.innerHTML = "";
@@ -368,6 +390,7 @@
             lessonIdToStart = 0
             if (urlSearchParams.has("lesson"))
                 lessonIdToStart = parseInt(urlSearchParams.get("lesson"), 10);
+            showSolution = urlSearchParams.get("solution") === 'true';
 
             displayLesson(lessonIdToStart);
         </script>
