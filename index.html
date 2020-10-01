@@ -202,6 +202,8 @@
             var lessonTestsShouldPass = document.getElementById("lesson-tests-should-pass");
             var lessonTestsShouldNotPass = document.getElementById("lesson-tests-should-not-pass");
 
+            var urlSearchParams = new URLSearchParams(window.location.search)
+
             function createVisualTest(elements, test) {
                 /*
                  *  <li class="list-group-item d-flex justify-content-between align-items-center">
@@ -262,6 +264,9 @@
                 lessonButtonAttribute(lessonButtonNext, "disabled", true);
                 lessonButtonAttribute(lessonButtonNext, "hidden", isLast);
                 lessonButtonAttribute(lessonButtonFinish, "hidden", !isLast);
+
+                urlSearchParams.set("lesson", id);
+                window.history.replaceState({}, document.title, "?" + urlSearchParams.toString());
             }
 
             function setTestStatus(name, status) {
@@ -360,7 +365,11 @@
                 onTextChange();
             }
 
-            displayLesson(0);
+            lessonIdToStart = 0
+            if (urlSearchParams.has("lesson"))
+                lessonIdToStart = parseInt(urlSearchParams.get("lesson"), 10);
+
+            displayLesson(lessonIdToStart);
         </script>
     </body>
 </html>
