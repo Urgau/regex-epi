@@ -289,6 +289,10 @@
 
                 urlSearchParams.set("lesson", id);
                 window.history.replaceState({}, document.title, "?" + urlSearchParams.toString());
+                
+                // lessonInput.value was changed but onchange was not trigger
+                // so trigger manualy the underline function
+                onTextChange();
             }
 
             function setTestStatus(name, status) {
