@@ -181,7 +181,7 @@
                     "Try to match only string not containing digit and character `a`.<br>Text must contain at least 2 characters `o`, or `i`.",
                     ["no_more_numbers", "noDigits", "bcdefghiiklmnopr"],
                     ["character_oo", "ggikilap", "numberii1345", "notLetters"],
-                    "n/a"),
+                    "[^a1-9]*[oi][^a1-9]*[oi][^a1-9]*"),
                 new Lesson("Telephone number", // \+{0,1}(\d{3} *\d{3} *|\d{4}) *\d{3} *\d{3}
                     "Now we can try to match telephone number. Write regex to match all test numbers.",
                     ["+421901264523", "+421 901 264 523", "0907236542", "0907 236 542"],
