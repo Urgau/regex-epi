@@ -153,7 +153,12 @@
                     ["abcdefg MatchMe2", "a maTch4H", "def 2", "abc KLM"],
                     ["hhh 45", "God fat", "abc ABC", "abc F"],
                     "[a-g]+ [^A-G]+"),
-                new Lesson("Or matching", // ^[a-z]{2}\d{3}$|^\d{3}[a-z]{2}$
+                new Lesson("Or matching - easy",
+                    "Try to match a number only composed of `0` or only composed of `1`.<br>Be careful to begin and end line with adapted token.",
+                    ["0000", "1", "111", "0"],
+                    ["0110", "2222", "1a1", "10"],
+                    "^0+$|^1+$"),
+                new Lesson("Or matching - harder", // ^[a-z]{2}\d{3}$|^\d{3}[a-z]{2}$
                     "Try to match a word composed by 2 characters followed by 3 digits or composed by 3 digits followed by 2 characters.<br>Be careful to begin and end line with adapted token.",
                     ["ab123", "er404", "382gf", "206mk"],
                     ["abc123", "a457", "67ui", "9999hf"],
