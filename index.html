@@ -197,15 +197,6 @@
                     [["Try to capture [code] and only (123) number inside.", "code", "123"], ["[thisIsAlsoAItem] (999)", "me", "999"]],
                     ["This is invalid |kk| and [ll]", "This is also invalid no ?"],
                     ".*\\[([a-zA-Z]*)\\].*\\(([0-9]*)\\).*"),
-                new Lesson("Real world - Basic email format verification",
-                    "Try to write a regex that verify basic email.</br>You should also capture the email domain (aka domain name).",
-                    [
-                        ["name@email.com", "email.com"],
-                        ["n@email.ch", "email.ch"],
-                        ["reg.ex@c.name", "c.name"]
-                    ],
-                    ["@mail.com", "name@.com", "name@missing", "spe*cial@email.com"],
-                    "[a-zA-Z\\.]+@([a-z]+\\.[a-z]+)"),
                 new Lesson("Real world - Palindrome",
                     "Try to match an <strong>4 letters</strong> palindrome.<br><small>HINT: You can use capturing groups by inserting \\N - where N stands for captured group index.</small>",
                     ["akka", "bccb", "MooM", "O00O"],
@@ -221,6 +212,16 @@
                     ["+421901264523", "+421 901 264 523", "0907236542", "0907 236 542"],
                     ["notNumbers", "+france", "21 901 265 563", "09012364565"],
                     "\\+{0,1}(\\d{3} *\\d{3} *|\\d{4}) *\\d{3} *\\d{3}"),
+                new Lesson("Real world - Email format",
+                    "Try to write a regex that verify theses emails and also capture the email domain (aka domain name).",
+                    [
+                        ["name@email.com", "email.com"],
+                        ["n@email.ch", "email.ch"],
+                        ["reg.ex@c.name", "c.name"],
+                        ["valid@subdomain.mail.com", "subdomain.mail.com"]
+                    ],
+                    ["@mail.com", "name@.com", "name@missing", "spe*cial@mail.com", "dot.@email.com", "name@mail..com"],
+                    "[a-zA-Z\\.]*[a-zA-Z]@((?:\\.?[a-z]+)+\\.[a-z]{2,})"),
                 new Lesson("Real world - HTML Content fetcher",
                     "Try to capture the content of the <em>TAG</em> element.",  // <TAG\b[^>]*>(.*?)<\/TAG>
                     [
