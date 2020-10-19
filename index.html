@@ -225,6 +225,7 @@
                 new Lesson("Real world - HTML Content fetcher",
                     "Try to capture the content of the <em>TAG</em> element.",  // <TAG\b[^>]*>(.*?)<\/TAG>
                     [
+                        ["<TAG>content</TAG>", "content"],
                         ["<TAG>one<TAG>two</TAG>one</TAG>", "one<TAG>two</TAG>one"],
                         ["<TAG attr='false'>Hello</TAG>", "Hello"],
                         ["<TAG></TAG>", ""],
@@ -237,9 +238,11 @@
                         ["<p>aaa</p>", "p", "aaa"],
                         ["<p test='kk' >HELLO</p>", "p", "HELLO"],
                         ["<div disabled>texte</div>", "div", "texte"],
-                        ["<TAG attr='TAG'>Complex?</TAG>", "TAG", "Complex?"]
+                        ["<TAG attr='TAG'>Complex?</TAG>", "TAG", "Complex?"],
+                        ["<D1v ab='D1v'>!</D1v>", "D1v", "!"],
+                        ["<oo	>content</oo>", "oo", "content"]
                     ],
-                    ["<p>false</div>", "</br>", "<p>missing", "<m></l>"],
+                    ["<p>false</div>", "</br>", "<p>missing", "<m></l>", "<1></1>", "<_div></_div>"],
                     "<([a-zA-Z][a-zA-Z0-9]*)\\b[^>]*>(.*?)<\\/\\1>"),
             ];
             var lessonInputs = (new Array(lessons.length)).fill("");
