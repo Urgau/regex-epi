@@ -217,11 +217,13 @@
                     [
                         ["name@email.com", "email.com"],
                         ["n@email.ch", "email.ch"],
+                        ["a.b@m.email.com", "m.email.com"],
                         ["reg.ex@c.name", "c.name"],
-                        ["valid@subdomain.mail.com", "subdomain.mail.com"]
+                        ["valid@subdomain.mail.com", "subdomain.mail.com"],
+                        ["valid.name@email.com", "email.com"]
                     ],
-                    ["@mail.com", "name@.com", "name@missing", "spe*cial@mail.com", "dot.@email.com", "name@mail..com"],
-                    "[a-zA-Z\\.]*[a-zA-Z]@((?:\\.?[a-z]+)+\\.[a-z]{2,})"),
+                    ["@mail.com", "name@.com", "name@missing", "spe*cial@mail.com", "dot.@email.com", "name@mail..com", ".name@email.com", ".@email.com", "1ab@email.com"],
+                    "[a-zA-Z](?:[a-zA-Z\\.]+[a-zA-Z])*@((?:\\.?[a-z]+)+\\.[a-z]{2,})"),
                 new Lesson("Real world - HTML Content fetcher",
                     "Try to capture the content of the <em>TAG</em> element.",  // <TAG\b[^>]*>(.*?)<\/TAG>
                     [
