@@ -231,8 +231,9 @@
                         ["<TAG>one<TAG>two</TAG>one</TAG>", "one<TAG>two</TAG>one"],
                         ["<TAG attr='false'>Hello</TAG>", "Hello"],
                         ["<TAG></TAG>", ""],
+                        ["<TAG>></TAG>", ">"]
                     ],
-                    ["<TAG>TAGccc", "<TAG qq=qbc 7/>", "<TAG>hhh<TAG>"],
+                    ["<TAG>TAGccc", "<TAG qq=qbc 7/>", "<TAG>hhh<TAG>", "<TAG><TAG>", "TAG></TAG>"],
                     "<TAG\\b[^>]*>(.*?)<\\/TAG>"),
                 new Lesson("Real world - HTML Content tag fetcher",
                     "Try to capture element the tag type into group 1 and the content of the tag into group 2.",  // <([a-z][a-z0-9]*)\b[^>]*>(.*?)<\/\1>
