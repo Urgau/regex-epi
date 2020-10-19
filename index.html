@@ -194,7 +194,7 @@
                     "a([0-9])"),
                 new Lesson("Capture groups - harder",
                     "Try to capture all the items in the brackets <strong>[]</strong> and <strong>()</strong>.</br>If you did it fine, your group should have captured in blocks:<br><ol start='0'><li>// not important //</li><li>code</li><li>123</li></ol><small>Tips: Dont forget to escape special chars.</small>",
-                    [["Try to capture [code] and only (123) number inside.", "code", "123"], ["[thisIsAlsoAItem] (999)", "me", "999"]],
+                    [["Try to capture [code] and only (123) number inside.", "code", "123"], ["[thisIsAlsoAnItem] (999)", "thisIsAlsoAnItem", "999"]],
                     ["This is invalid |kk| and [ll]", "This is also invalid no ?"],
                     ".*\\[([a-zA-Z]*)\\].*\\(([0-9]*)\\).*"),
                 new Lesson("Real world - Palindrome",
@@ -225,7 +225,7 @@
                 new Lesson("Real world - HTML Content fetcher",
                     "Try to capture the content of the <em>TAG</em> element.",  // <TAG\b[^>]*>(.*?)<\/TAG>
                     [
-                        ["<TAG>one<TAG>two</TAG>one</TAG>", "one<TAG>two"],
+                        ["<TAG>one<TAG>two</TAG>one</TAG>", "one<TAG>two</TAG>one"],
                         ["<TAG attr='false'>Hello</TAG>", "Hello"],
                         ["<TAG></TAG>", ""],
                     ],
@@ -236,7 +236,7 @@
                     [
                         ["<p>aaa</p>", "p", "aaa"],
                         ["<p test='kk' >HELLO</p>", "p", "HELLO"],
-                        ["<div disabled>texte</div>", "texte", "disabled"],
+                        ["<div disabled>texte</div>", "div", "texte"],
                         ["<TAG attr='TAG'>Complex?</TAG>", "TAG", "Complex?"]
                     ],
                     ["<p>false</div>", "</br>", "<p>missing", "<m></l>"],
@@ -340,15 +340,14 @@
                 test.innerText = status === "danger" ? "X" : "V";
             }
 
-            function compare(arr1,arr2){
+            function compare(arr1,arr2) {
                 if (!arr1 || !arr2) return false
                 if (arr1.length !== arr2.length) return false
 
-                arr1.forEach(e1 => arr2.forEach(e2 => {
-                    if (e1 !== e2)
-                        return false;
-                }))
-                return true
+                for (i = 0; i < arr1.length; i++)
+                    if (arr1[i] !== arr2[i])
+                        return (false);
+                return (true);
             }
 
             function checkTestMatch(regex, test, cond) {
