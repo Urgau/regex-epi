@@ -414,22 +414,28 @@
                 lessonButtonAttribute(btn, "disabled", !enabled);
             }
 
-            lessonButtonPrev.onclick = function (event) {
+            function goToPrev() {
                 if (lessonCurrentId - 1 >= 0)
                     displayLesson(lessonCurrentId - 1);
             }
 
-            lessonButtonNext.onclick = function (event) {
+            function goToNext() {
                 if (lessonCurrentId + 1 < lessons.length)
                     displayLesson(lessonCurrentId + 1);
             }
 
-            lessonInput.onchange = function (event) {
-                onTextChange();
-            }
+            lessonButtonPrev.onclick = goToPrev;
+            lessonButtonNext.onclick = goToNext;
 
+            lessonInput.onchange = onTextChange;
             lessonInput.onkeyup = function (event) {
-                onTextChange();
+                if (event.keyCode === 13) {
+                    event.preventDefault();
+                    if (!lessonButtonNext.hasAttribute("disabled"))
+                        goToNext()
+                } else {
+                    onTextChange();
+                }
             }
 
             lessonIdToStart = 0
