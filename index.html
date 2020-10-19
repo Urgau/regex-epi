@@ -206,12 +206,12 @@
                     "Try to match an string not containing any digits or the character <em>a</em>.<br>Plus the string <strong>must</strong> contain at least 2 characters <em>o</em> or <em>i</em>.",
                     ["no_more_numbers", "noDigits", "bcdefghiiklmnopr"],
                     ["character_oo", "ggikilap", "numberii1345", "notLetters"],
-                    "[^a1-9]*[oi][^a1-9]*[oi][^a1-9]*"),
+                    "[^a0-9]*([oi])[^a0-9]*\1[^a0-9]*"),
                 new Lesson("Real world - Telephone number", // \+{0,1}(\d{3} *\d{3} *|\d{4}) *\d{3} *\d{3}
                     "Try to match every valid telephone numbers.",
-                    ["+421901264523", "+421 901 264 523", "0907236542", "0907 236 542"],
-                    ["notNumbers", "+france", "21 901 265 563", "09012364565"],
-                    "\\+{0,1}(\\d{3} *\\d{3} *|\\d{4}) *\\d{3} *\\d{3}"),
+                    ["+421901264523", "+421 901 264 523", "0907236542", "0907 236  542"],
+                    ["notNumbers", "+france", "21 901 265 563", "09012364565", "+1234567899"],
+                    "(\\+{0,1}\\d{3} *\\d{3} *|\\d{4}) *\\d{3} *\\d{3}"),
                 new Lesson("Real world - Email format",
                     "Try to write a regex that verify theses emails and also capture the email domain (aka domain name).",
                     [
