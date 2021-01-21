@@ -229,7 +229,7 @@
                     "Try to match an string not containing any digits or the character <em>a</em>.<br>Plus the string <strong>must</strong> contain at least 2 characters <em>o</em> or <em>i</em>.",
                     ["no_more_numbers", "noDigits", "bcdefghiiklmnopr"],
                     ["character_oo", "ggikilap", "numberii1345", "notLetters"],
-                    "[^a0-9]*([oi])[^a0-9]*\1[^a0-9]*"),
+                    "[^a0-9]*([oi])[^a0-9]*\\1[^a0-9]*"),
                 new Lesson("Real world - Telephone number", // \+{0,1}(\d{3} *\d{3} *|\d{4}) *\d{3} *\d{3}
                     "Try to match every valid telephone numbers.",
                     ["+421901264523", "+421 901 264 523", "0907236542", "0907 236  542"],
