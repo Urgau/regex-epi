@@ -6,75 +6,98 @@
         <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
 
         <!-- Bootstrap CSS -->
-        <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
+        <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta1/dist/css/bootstrap.min.css" integrity="sha384-giJF6kkoqNQ00vy+HMDP7azOuL0xtbfIcaT9wjKHr8RbDVddVHyTfAAsrekwKmP1" crossorigin="anonymous">
 
         <!-- Regex Colorize -->
         <link rel="stylesheet" href="regex-colorizer.css">
 
+        <!-- Regex -->
+        <link rel="stylesheet" href="regex.css">
+
         <title>Regex - Workshop</title>
     </head>
-    <body style="background-color: #e9ecef">
-        <nav class="navbar navbar-expand-lg navbar-light sticky-top bg-light">
-            <a class="navbar-brand" href="#">
-                <img src="https://kasunkodagoda.gallerycdn.vsassets.io/extensions/kasunkodagoda/regex-match-replace/2.1.5/1567104415777/Microsoft.VisualStudio.Services.Icons.Default" width="30" height="30" class="d-inline-block align-top" alt="">
-                Regex - Workshop
-            </a>
-            <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
-                <span class="navbar-toggler-icon"></span>
-            </button>
+    <body>
+        <!-- Header bar -->
+        <header class="navbar navbar-expand-lg navbar-dark sticky-top" style="background-color: #2ecc71;">
+            <nav class="container-xxl flex-wrap flex-md-nowrap" aria-label="Main navigation">
+                <a class="navbar-brand p-0 me-2" href="/" aria-label="Regex - Workshop">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="40" height="32" class="d-block my-1" viewBox="0 0 197.45 160"><defs><style>.cls-1{fill:#fff;}</style></defs><path class="cls-1" d="M118.17,79.35A11.76,11.76,0,0,0,120,72.58a10.83,10.83,0,0,0-2.43-7.35,11.11,11.11,0,0,0-6.86-3.54q-2.2-.3-13.29-.31H83.22V84.27H96.7q13.1,0,16.36-1.11A9.82,9.82,0,0,0,118.17,79.35Z" transform="translate(-2.78 -11.22)"/><path class="cls-1" d="M179.56,47.51V32.28a21.06,21.06,0,0,0-21.07-21.06H44.62a21,21,0,0,0-21,20.54c0-.27,0-.43,0-.43V45.8c-.83,15.6-4.8,38.47-20.78,40.36V96.33c16,1.89,20,24.33,20.78,39.64v14.19a21.06,21.06,0,0,0,21.06,21.06H158.49a21.06,21.06,0,0,0,21.07-21.06V134.29c1-15.21,5.26-36.14,20.67-38V86.16C184.82,84.34,180.58,63,179.56,47.51Zm-55.24,88.81-13.17-19.63q-7-10.51-9.59-13.26a14.11,14.11,0,0,0-5.48-3.75c-1.93-.68-5-1-9.17-1H83.22v37.65H65V46.13h38.33q14.46,0,21,2.43a20.7,20.7,0,0,1,10.49,8.64,26,26,0,0,1,3.94,14.21q0,10.16-6,16.77T115,96.51a42.39,42.39,0,0,1,9.75,7.57q3.84,4.13,10.37,14.64l11,17.6Z" transform="translate(-2.78 -11.22)"/></svg>
+                </a>
 
-            <div class="collapse navbar-collapse" id="navbarSupportedContent">
-                <ul class="navbar-nav mr-auto">
-                    <li class="nav-item">
-                        <a class="nav-link" target='_blank' href="https://regexr.com/">RegExr</a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link" target='_blank' href="https://regex101.com/">regex101</a>
-                    </li>
-                </ul>
-            </div>
-        </nav>
+                <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#rgNavbar" aria-controls="rgNavbar" aria-expanded="false" aria-label="Toggle navigation">
+                    <span class="navbar-toggler-icon"></span>
+                </button>
 
-        <div class="jumbotron mb-0 pb-4" id="lesson">
-            <h1 class="display-5" id="lesson-title">Title</h1>
-            <p id="lesson-description">Description</p>
+                <div class="collapse navbar-collapse" id="rgNavbar">
+                    <ul class="navbar-nav flex-row flex-wrap bd-navbar-nav pt-2 py-md-0">
+                        <li class="nav-item col-6 col-md-auto">
+                            <a class="nav-link p-2 active" aria-current="page" href="/">Home</a>
+                        </li>
+                        <li class="nav-item col-6 col-md-auto">
+                            <a class="nav-link p-2" target='_blank' href="https://regexr.com/">RegExr</a>
+                        </li>
+                        <li class="nav-item col-6 col-md-auto">
+                            <a class="nav-link p-2" target='_blank' href="https://regex101.com/">regex101</a>
+                        </li>
+                    </ul>
 
-            <div class="input-group mb-2">
-                <div class="input-group-prepend">
-                    <span class="input-group-text">^</span>
+                    <ul class="navbar-nav flex-row flex-wrap ms-md-auto">
+                        <li class="nav-item col-6 col-md-auto">
+                            <a class="nav-link p-2" href="https://github.com/Urgau/regex-epi" target="_blank" rel="noopener">
+                                <svg xmlns="http://www.w3.org/2000/svg" width="36" height="36" class="navbar-nav-svg d-inline-block align-text-top" viewBox="0 0 512 499.36" role="img"><title>GitHub</title><path fill="currentColor" fill-rule="evenodd" d="M256 0C114.64 0 0 114.61 0 256c0 113.09 73.34 209 175.08 242.9 12.8 2.35 17.47-5.56 17.47-12.34 0-6.08-.22-22.18-.35-43.54-71.2 15.49-86.2-34.34-86.2-34.34-11.64-29.57-28.42-37.45-28.42-37.45-23.27-15.84 1.73-15.55 1.73-15.55 25.69 1.81 39.21 26.38 39.21 26.38 22.84 39.12 59.92 27.82 74.5 21.27 2.33-16.54 8.94-27.82 16.25-34.22-56.84-6.43-116.6-28.43-116.6-126.49 0-27.95 10-50.8 26.35-68.69-2.63-6.48-11.42-32.5 2.51-67.75 0 0 21.49-6.88 70.4 26.24a242.65 242.65 0 0 1 128.18 0c48.87-33.13 70.33-26.24 70.33-26.24 14 35.25 5.18 61.27 2.55 67.75 16.41 17.9 26.31 40.75 26.31 68.69 0 98.35-59.85 120-116.88 126.32 9.19 7.9 17.38 23.53 17.38 47.41 0 34.22-.31 61.83-.31 70.23 0 6.85 4.61 14.81 17.6 12.31C438.72 464.97 512 369.08 512 256.02 512 114.62 397.37 0 256 0z"></path></svg>
+                                <small class="d-md-none ms-2">GitHub</small>
+                            </a>
+                        </li>
+                    </ul>
                 </div>
-                <input type="text" class="form-control" id="lesson-input">
-                <div class="input-group-append">
+            </nav>
+        </header>
+
+        <!-- Main content -->
+        <div class="container-xxl pt-4 rg-layout">
+            <aside class="rg-sidebar">
+                <nav class="collapse rg-links" aria-label="Lessons navigation">
+                    <ul class="list-unstyled mb-0 py-3 pt-md-1" id="lesson-list">
+                    </ul>
+                </nav>
+            </aside>
+            <main class="rg-main" id="lesson">
+                <h1 class="display-5" id="lesson-title">Title</h1>
+                <p id="lesson-description">Description</p>
+
+                <div class="input-group mb-2">
+                    <span class="input-group-text">^</span>
+                    <input type="text" class="form-control" id="lesson-input">
                     <span class="input-group-text">$</span>
                 </div>
-            </div>
 
-            <div class="alert alert-light regex" role="alert" id="lesson-input-colorized" ></div>
-            <div class="alert alert-danger" role="alert" id="lesson-label-error" hidden></div>
+                <div class="alert alert-secondary regex" role="alert" id="lesson-input-colorized"></div>
+                <div class="alert alert-danger" role="alert" id="lesson-label-error" hidden></div>
 
-            <div class="container mt-5 mb-5">
-                <div class="row">
-                    <div class="col">
-                        <h5 class="display-5">Valid cases:</h2>
+                <div class="container mt-5 mb-5">
+                    <div class="row">
+                        <div class="col">
+                            <h5 class="display-5">Matching cases:</h2>
+                        </div>
+                        <div class="col">
+                            <h5 class="display-5">Non-matching cases:</h2>
+                        </div>
                     </div>
-                    <div class="col">
-                        <h5 class="display-5">Invalid cases:</h2>
+                    <div class="row">
+                        <div class="col">
+                            <ul class="list-group" id="lesson-tests-should-pass" />
+                        </div>
+                        <div class="col">
+                            <ul class="list-group" id="lesson-tests-should-not-pass" />
+                        </div>
                     </div>
                 </div>
-                <div class="row">
-                    <div class="col">
-                        <ul class="list-group" id="lesson-tests-should-pass" />
-                    </div>
-                    <div class="col">
-                        <ul class="list-group" id="lesson-tests-should-not-pass" />
-                    </div>
-                </div>
-            </div>
+            </main>
         </div>
 
         <!-- Bottom nav -->
         <nav class="navbar navbar-light fixed-bottom bg-light">
-            <div class="col-auto">
+            <div class="col-auto m-1 ms-3 me-2">
                 <button type="button" class="btn btn-primary" id="lesson-btn-prev" disabled>Previous</button>
             </div>
             <div class="col my-auto">
@@ -82,7 +105,7 @@
                     <div class="progress-bar" role="progressbar" style="width: 0%" aria-valuenow="0" aria-valuemin="0" aria-valuemax="100" id="lesson-current-advance">0%</div>
                 </div>
             </div>
-            <div class="col-auto">
+            <div class="col-auto m-1 ms-2 me-3">
                 <button type="button" class="btn btn-primary" id="lesson-btn-next" disabled>Next</button>
                 <button type="button" class="btn btn-primary" id="lesson-btn-finish" data-toggle="modal" data-target="#lesson-modal-finish" disabled hidden>Finish</button>
             </div>
@@ -109,9 +132,8 @@
 
         <!-- Optional JavaScript -->
         <!-- jQuery first, then Popper.js, then Bootstrap JS -->
-        <script src="https://code.jquery.com/jquery-3.4.1.slim.min.js" integrity="sha384-J6qa4849blE2+poT4WnyKhv5vZF5SrPo0iEjwBvKU7imGFAV0wwj1yYfoRSJoZ+n" crossorigin="anonymous"></script>
-        <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js" integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo" crossorigin="anonymous"></script>
-        <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js" integrity="sha384-wfSDF2E50Y2D1uUdj0O3uMBJnjuUD4Ih7YwaYd1iqfktj0Uod8GCExl3Og8ifwB6" crossorigin="anonymous"></script>
+        <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.5.4/dist/umd/popper.min.js" integrity="sha384-q2kxQ16AaE6UbzuKqyBE9/u/KzioAlnx2maXQHiDX9d4/zp8Ok3f+M7DPm+Ib6IU" crossorigin="anonymous"></script>
+        <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta1/dist/js/bootstrap.min.js" integrity="sha384-pQQkAEnwaBkjpqZ8RU1fF1AKtTcHJwFl3pblpTlHXybJjHpMYo79HY3hIi4NKxyj" crossorigin="anonymous"></script>
         <script src="regex-colorizer.js"></script>
 
         <script>
@@ -125,6 +147,7 @@
                 }
             }
 
+            var lessonMaxId = 0;
             var lessonCurrentId = 0;
             var lessons = [
                 new Lesson("Introduction",
@@ -132,42 +155,42 @@
                     ["yes"],
                     ["no"],
                     "yes"),
-                new Lesson("Basics - match single digit",
+                new Lesson("Basics - Match single digit",
                     "Try to match <strong>one</strong> single digit from 0 - 9.",
                     ["0", "5", "9"],
                     ["a", "10", "1b"],
                     "[0-9]"),
-                new Lesson("Basics - match number (more digits)",
+                new Lesson("Basics - Match number (more digits)",
                     "Try to match all numbers.",
                     ["1", "12", "321", "123456"],
                     ["a", "1b", "number"],
                     "[0-9]*"),
-                new Lesson("Basics - match limited size number",
+                new Lesson("Basics - Match limited size number",
                     "Try to match all [2; 5] digits number.",
                     ["10", "516", "55565"],
                     ["a", "1", "1b", "number", "666666"],
                     "[0-9]{2,5}"),
-                new Lesson("Basics - match abc",
+                new Lesson("Basics - Match abc",
                     "Try to match texts like <em>abc</em>, <em>aac</em>, <em>bcaabc</em>, …. Basically only strings from letters <em>a</em>, <em>b</em> or <em>c</em>.",
                     ["abc", "cbaa", "a"],
                     ["abcd", "d", "1b"],
                     "[abc]*"),
-                new Lesson("Basics - opposite",
+                new Lesson("Basics - Opposite",
                     "Try to match inputs which <strong>doesn't contains</strong> the letters <em>a</em> , <em>b</em>, or <em>c</em>.",
                     ["knowledge", "efghij", "su_ki"],
                     ["regular", "credit", "scary", ""],
                     "[^abc]+"),
-                new Lesson("Basics - match char followed by number",
+                new Lesson("Basics - Match char followed by number",
                     "Try to match a character followed a number (one or more digit).",
                     ["a0", "b277", "y9999"],
                     ["8", "98e", "io6", "s"],
                     "[a-z][0-9]+"),
-                new Lesson("Basics - match char possibly followed by number",
+                new Lesson("Basics - Match char possibly followed by number",
                     "Try to match a character followed optionally by a number.",
                     ["a0", "b277", "y9999", "s"],
                     ["8", "98e", "io6"],
                     "[a-z][0-9]*"),
-                new Lesson("Basics - handling special characters",
+                new Lesson("Basics - Handling special characters",
                     "Try to match the character <strong>[</strong>.</br><small>Tips: it's as simple as with C</small>",
                     ["["],
                     ["a", "0", "_"],
@@ -177,22 +200,22 @@
                     ["abcdefg MatchMe2", "a maTch4H", "def 2", "e _"],
                     ["hhh 45", "God fat", "abc ABC", "abc F", "ag"],
                     "[a-g]+ [^A-G]+"),
-                new Lesson("Or matching - easy",
+                new Lesson("Or matching - Simple",
                     "Try to match a line composed <strong>only of 0</strong> or <strong>only of 1</strong>.<br><small>Be careful to begin and end line with adapted token.</small>",
                     ["0000", "1", "111", "0"],
                     ["0110", "2222", "1a1", "10"],
                     "(0+|1+)"),
-                new Lesson("Or matching - harder", // ^[a-z]{2}\d{3}$|^\d{3}[a-z]{2}$
+                new Lesson("Or matching - Harder", // ^[a-z]{2}\d{3}$|^\d{3}[a-z]{2}$
                     "Try to match a word composed by:</br><ul><li>2 characters <span class='text-muted'>followed by</span> 3 digits</li><li>3 digits <span class='text-muted'>followed by</span> 2 characters.</li></ul><small>Be careful to begin and end line with adapted token.</small>",
                     ["ab123", "er404", "382gf", "206mk"],
                     ["abc123", "a45", "a(5)5", "9999hf"],
                     "([a-z]{2}\\d{3}|\\d{3}[a-z]{2})"),
-                new Lesson("Capture groups - easy",
+                new Lesson("Capture groups - Simple",
                     "Try to match the letter <strong><em>a</em></strong> followed by a digit and use an <a target='_blank' href='https://javascript.info/regexp-groups'>capture group</a> to capture the digit.",
                     [["a2", "2"], ["a9", "9"]],
                     ["ab", "9z"],
                     "a([0-9])"),
-                new Lesson("Capture groups - harder",
+                new Lesson("Capture groups - Harder",
                     "Try to capture all the items in the brackets <strong>[]</strong> and <strong>()</strong>.</br>If you did it fine, your group should have captured in blocks:<br><ol start='0'><li>// not important //</li><li>code</li><li>123</li></ol><small>Tips: Dont forget to escape special chars.</small>",
                     [["Try to capture [code] and only (123) number inside.", "code", "123"], ["[thisIsAlsoAnItem] (999)", "thisIsAlsoAnItem", "999"]],
                     ["This is invalid |kk| and [ll]", "This is also invalid no ?"],
@@ -250,6 +273,7 @@
             ];
             var lessonInputs = (new Array(lessons.length)).fill("");
 
+            var lessonList = document.getElementById("lesson-list");
             var lessonTitle = document.getElementById("lesson-title");
             var lessonInput = document.getElementById("lesson-input");
             var lessonInputColorized = document.getElementById("lesson-input-colorized");
@@ -275,7 +299,6 @@
 
                 var name = Array.isArray(test) ? test[0] : test;
                 var li = document.createElement("li");
-                var span = document.createElement("span");
 
                 li.classList.add("list-group-item");
                 li.classList.add("d-flex");
@@ -285,15 +308,87 @@
                     li.innerText = "(empty)"
                 else
                     li.innerText = name;
+                li.id = "test_" + name;
 
-                span.classList.add("badge");
-                span.classList.add("badge-pill");
-                span.classList.add("badge-danger");
-                span.innerText = "X";
-                span.id = "test_" + name;
-
-                li.appendChild(span);
                 elements.appendChild(li);
+            }
+
+            function lessonBlockCreate(name, show) {
+                var nameId = "block-" + name.replace(" ", "-")
+                var li = document.createElement("li")
+                var button = document.createElement("button")
+                var div = document.createElement("div")
+                var ul = document.createElement("ul")
+
+                li.classList.add("mb-1")
+                button.classList.add("btn")
+                button.classList.add("d-inline-flex")
+                button.classList.add("align-items-center")
+                button.classList.add("rounded")
+                button.classList.add("collapsed")
+                div.classList.add("collapse")
+                ul.classList.add("list-unstyled")
+                ul.classList.add("fw-normal")
+                ul.classList.add("pb-1")
+                ul.classList.add("small")
+
+                button.setAttribute("data-bs-toggle", "collapse")
+                button.setAttribute("data-bs-target", "#" + nameId)
+                button.innerText = name
+                div.setAttribute("id", nameId)
+
+                div.appendChild(ul)
+                li.appendChild(button)
+                li.appendChild(div)
+                lessonList.appendChild(li)
+                return ul
+            }
+
+            function lessonListGenerate(idToActive) {
+                var dict = {}
+
+                for (i = 0; i < lessons.length; i++) {
+                    var outputList = lessonList;
+                    var outputName = lessons[i].title;
+
+                    if (lessons[i].title.includes(" - ")) {
+                        var components = lessons[i].title.split(" - ")
+                        var blockName = components[0];
+                        var subBlockName = components[1];
+
+                        if (!(blockName in dict)) {
+                            dict[blockName] = lessonBlockCreate(blockName, i == idToActive)
+                        }
+
+                        outputList = dict[blockName];
+                        outputName = subBlockName;
+                    }
+
+                    let li = document.createElement("li")
+                    let a = document.createElement("a")
+
+                    a.classList.add("d-inline-flex")
+                    a.classList.add("align-items-center")
+                    a.classList.add("rounded")
+                    if (i == idToActive)
+                        a.classList.add("active")
+
+                    a.id = "lesson-link-" + i;
+                    a.href = "?lesson=" + i;
+                    a.innerText = outputName;
+                    let aId = i;
+                    a.onclick = function (e) {
+                        e.preventDefault();
+                        if (aId <= lessonMaxId) {
+                            displayLesson(aId);
+                        } else {
+                            alert("You don't have unlock this lesson!")
+                        }
+                    }
+
+                    li.appendChild(a);
+                    outputList.appendChild(li);
+                }
             }
 
             function lessonButtonAttribute(btn, name, enabled) {
@@ -304,8 +399,12 @@
             }
 
             function displayLesson(id) {
+                document.getElementById("lesson-link-" + lessonCurrentId)
+                    .classList.remove("active")
+
                 lessonInputs[lessonCurrentId] = lessonInput.value;
                 lessonCurrentId = id;
+                lessonMaxId = Math.max(lessonMaxId, lessonCurrentId);
 
                 lessonTitle.innerText = lessons[id].title;
                 lessonDescription.innerHTML = lessons[id].description;
@@ -330,6 +429,18 @@
                 lessonButtonAttribute(lessonButtonNext, "hidden", isLast);
                 lessonButtonAttribute(lessonButtonFinish, "hidden", !isLast);
 
+                lessonLinkId = document.getElementById("lesson-link-" + id)
+                blockLessonLi = lessonLinkId.closest("#lesson-list > li")
+
+                lessonLinkId.classList.add("active")
+                if (blockLessonLi != null) {
+                    blockLessonButton = blockLessonLi.children[0]
+                    blockLessonDiv = blockLessonLi.children[1]
+
+                    blockLessonButton.classList.remove("collapsed")
+                    blockLessonDiv.classList.add("show")
+                }
+
                 urlSearchParams.set("lesson", id);
                 window.history.replaceState({}, document.title, "?" + urlSearchParams.toString());
                 
@@ -341,9 +452,8 @@
             function setTestStatus(name, status) {
                 var test = document.getElementById("test_" + name);
 
-                test.classList.remove("badge-" + (status === "danger" ? "success" : "danger"));
-                test.classList.add("badge-" + status);
-                test.innerText = status === "danger" ? "X" : "V";
+                test.classList.remove("list-group-item-" + (status === "danger" ? "success" : "danger"));
+                test.classList.add("list-group-item-" + status);
             }
 
             function compare(arr1,arr2) {
@@ -444,6 +554,7 @@
                 lessonIdToStart = parseInt(urlSearchParams.get("lesson"), 10);
             showSolution = urlSearchParams.get("solution") === 'true';
 
+            lessonListGenerate(lessonIdToStart);
             displayLesson(lessonIdToStart);
         </script>
     </body>
