@@ -287,7 +287,7 @@
             var lessonTestsShouldNotPass = document.getElementById("lesson-tests-should-not-pass");
 
             var urlSearchParams = new URLSearchParams(window.location.search)
-            var showSolution = false;
+            var isInSolutionMode = false;
 
             function createVisualTest(elements, test) {
                 /*
@@ -379,7 +379,7 @@
                     let aId = i;
                     a.onclick = function (e) {
                         e.preventDefault();
-                        if (aId <= lessonMaxId) {
+                        if (aId <= lessonMaxId || isInSolutionMode) {
                             displayLesson(aId);
                         } else {
                             alert("You don't have unlock this lesson!")
@@ -409,7 +409,7 @@
                 lessonTitle.innerText = lessons[id].title;
                 lessonDescription.innerHTML = lessons[id].description;
 
-                lessonInput.value = showSolution === false ?
+                lessonInput.value = isInSolutionMode === false ?
                     lessonInputs[id] : lessons[id].solution;
                 lessonInputColorized.innerHTML = "";
                 lessonTestsShouldPass.innerHTML = "";
@@ -552,7 +552,7 @@
             lessonIdToStart = 0
             if (urlSearchParams.has("lesson"))
                 lessonIdToStart = parseInt(urlSearchParams.get("lesson"), 10);
-            showSolution = urlSearchParams.get("solution") === 'true';
+            isInSolutionMode = urlSearchParams.get("solution") === 'true';
 
             lessonListGenerate(lessonIdToStart);
             displayLesson(lessonIdToStart);
