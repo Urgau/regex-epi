@@ -62,7 +62,10 @@
                 </nav>
             </aside>
             <main class="rg-main" id="lesson">
-                <h1 class="display-5" id="lesson-title">Title</h1>
+                <h1 class="display-5" id="lesson-title">
+                    Title
+                    <a class="p-2" href="#" target="_blank" rel="noopener" id="lesson-link"><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-link-45deg" viewBox="0 0 16 16"><path d="M4.715 6.542L3.343 7.914a3 3 0 1 0 4.243 4.243l1.828-1.829A3 3 0 0 0 8.586 5.5L8 6.086a1.001 1.001 0 0 0-.154.199 2 2 0 0 1 .861 3.337L6.88 11.45a2 2 0 1 1-2.83-2.83l.793-.792a4.018 4.018 0 0 1-.128-1.287z"/><path d="M6.586 4.672A3 3 0 0 0 7.414 9.5l.775-.776a2 2 0 0 1-.896-3.346L9.12 3.55a2 2 0 0 1 2.83 2.83l-.793.792c.112.42.155.855.128 1.287l1.372-1.372a3 3 0 0 0-4.243-4.243L6.586 4.672z"/></svg></a>
+                </h1>
                 <p id="lesson-description">Description</p>
 
                 <div class="input-group mb-2">
@@ -138,9 +141,10 @@
 
         <script>
             class Lesson {
-                constructor(title, description, valids, invalids, solution) {
+                constructor(title, description, link, valids, invalids, solution) {
                     this.title = title;
                     this.description = description;
+                    this.link = link;
                     this.valids = valids;
                     this.invalids = invalids;
                     this.solution = solution;
@@ -152,46 +156,55 @@
             var lessons = [
                 new Lesson("Introduction",
                     "<strong>Preamble</strong>: For all exercices we recommand that you check out and use <a target='_blank' href='https://regex101.com'>regex101</a> or <a target='_blank' href='https://regexr.com/'>RegExr</a>. These website will help you to write regex(s).</br></br><strong>How it works</strong>: You will need to enter a valid regex and pass the 'Valid cases' and 'Invalid cases' column by matching and not matching her cases. The regex will be automatically tested and all input cases should be green.</br></br>For this first exercice we want you to match the simple <em>yes</em> word.",
+                    null,
                     ["yes"],
                     ["no"],
                     "yes"),
                 new Lesson("Basics - Match single digit",
                     "Try to match <strong>one</strong> single digit from 0 - 9.",
+                    "https://sodocumentation.net/regex/topic/343/matching-simple-patterns",
                     ["0", "5", "9"],
                     ["a", "10", "1b"],
                     "[0-9]"),
                 new Lesson("Basics - Match number (more digits)",
-                    "Try to match all numbers.",
+                    "Try to match all digits.",
+                    "https://sodocumentation.net/regex/topic/5916/possessive-quantifiers",
                     ["1", "12", "321", "123456"],
                     ["a", "1b", "number"],
                     "[0-9]*"),
                 new Lesson("Basics - Match limited size number",
                     "Try to match all [2; 5] digits number.",
+                    "https://sodocumentation.net/regex/topic/429/greedy-and-lazy-quantifiers",
                     ["10", "516", "55565"],
                     ["a", "1", "1b", "number", "666666"],
                     "[0-9]{2,5}"),
                 new Lesson("Basics - Match abc",
                     "Try to match texts like <em>abc</em>, <em>aac</em>, <em>bcaabc</em>, …. Basically only strings from letters <em>a</em>, <em>b</em> or <em>c</em>.",
+                    "https://sodocumentation.net/regex/topic/1757/character-classes",
                     ["abc", "cbaa", "a"],
                     ["abcd", "d", "1b"],
                     "[abc]*"),
                 new Lesson("Basics - Opposite",
                     "Try to match inputs which <strong>doesn't contains</strong> the letters <em>a</em> , <em>b</em>, or <em>c</em>.",
+                    "https://sodocumentation.net/regex/topic/1757/character-classes",
                     ["knowledge", "efghij", "su_ki"],
                     ["regular", "credit", "scary", ""],
                     "[^abc]+"),
                 new Lesson("Basics - Match char followed by number",
                     "Try to match a character followed a number (one or more digit).",
+                    null,
                     ["a0", "b277", "y9999"],
                     ["8", "98e", "io6", "s"],
                     "[a-z][0-9]+"),
                 new Lesson("Basics - Match char possibly followed by number",
                     "Try to match a character followed optionally by a number.",
+                    null,
                     ["a0", "b277", "y9999", "s"],
                     ["8", "98e", "io6"],
                     "[a-z][0-9]*"),
                 new Lesson("Basics - Handling special characters",
                     "Try to match the character <strong>[</strong>.</br><small>Tips: it's as simple as with C</small>",
+                    "https://sodocumentation.net/regex/topic/4524/escaping",
                     ["["],
                     ["a", "0", "_"],
                     "\\["),
@@ -207,51 +220,63 @@
                     "[A-Za-z][0-9]"),
                 new Lesson("Characters ranges - Matching two words",
                     "The first word <strong>should only be</strong> composed from the letters range: <em>a</em> to <em>g</em>.</br>The second word <strong>should not be</strong> composed from letters range: <em>A</em> to <em>G</em>.</br><small>To simplify things in this exercice the words are separated by <strong>one</strong> and only one space.</small>",
+                    null,
                     ["abcdefg MatchMe2", "a maTch4H", "def 2", "e _"],
                     ["hhh 45", "God fat", "abc ABC", "abc F", "ag"],
                     "[a-g]+ [^A-G]+"),
                 new Lesson("Or matching - Basic",
-                    "Try to only match the words <strong>cat</strong> and <strong>dog</strong>. ",
+                    "Try to only match the words <strong>cat</strong> and <strong>dog</strong>.",
+                    null,
                     ["cat", "dog"],
                     ["pangolin", "fox", "camel", "zebre"],
                     "(cat|dog)"),
                 new Lesson("Or matching - Binary",
                     "Try to match a line composed <strong>only of 0</strong> or <strong>only of 1</strong>.<br><small>Be careful to begin and end line with adapted token.</small>",
+                    null,
                     ["0000", "1", "111", "0"],
                     ["0110", "2222", "1a1", "10"],
                     "(0+|1+)"),
                 new Lesson("Or matching - Advanced", // ^[a-z]{2}\d{3}$|^\d{3}[a-z]{2}$
                     "Try to match a word composed by:</br><ul><li>2 characters <span class='text-muted'>followed by</span> 3 digits</li><li>3 digits <span class='text-muted'>followed by</span> 2 characters.</li></ul><small>Be careful to begin and end line with adapted token.</small>",
+                    null,
                     ["ab123", "er404", "382gf", "206mk"],
                     ["abc123", "a45", "a(5)5", "9999hf"],
                     "([a-z]{2}\\d{3}|\\d{3}[a-z]{2})"),
                 new Lesson("Capture groups - Basic",
                     "Try to match the letter <strong><em>a</em></strong> followed by a digit and use an <a target='_blank' href='https://javascript.info/regexp-groups'>capture group</a> to capture the digit.",
+                    "https://sodocumentation.net/regex/topic/660/capture-groups",
+                    null,
                     [["a2", "2"], ["a9", "9"]],
                     ["ab", "9z"],
                     "a([0-9])"),
                 new Lesson("Capture groups - Advanced",
                     "Try to capture all the items in the brackets <strong>[]</strong> and <strong>()</strong>.</br>If you did it fine, your group should have captured in blocks:<br><ol start='0'><li>// not important //</li><li>code</li><li>123</li></ol><small>Tips: Dont forget to escape special chars.</small>",
+                    null,
+                    "https://sodocumentation.net/regex/topic/660/capture-groups",
                     [["Try to capture [code] and only (123) number inside.", "code", "123"], ["[thisIsAlsoAnItem] (999)", "thisIsAlsoAnItem", "999"]],
                     ["This is invalid |kk| and [ll]", "This is also invalid no ?"],
                     ".*\\[([a-zA-Z]*)\\].*\\(([0-9]*)\\).*"),
                 new Lesson("Real world - Palindrome",
                     "Try to match an <strong>4 letters</strong> palindrome.<br><small>HINT: You can use capturing groups by inserting \\N - where N stands for captured group index.</small>",
+                    null,
                     ["akka", "bccb", "MooM", "O00O"],
                     ["akkk", "abdc", "numberii1345", "notLetters"],
                     "(.)(.)\\2\\1"),
                 new Lesson("Real world - Lookahead!",
                     "Try to match an string not containing any digits or the character <em>a</em>.<br>Plus the string <strong>must</strong> contain at least 2 characters <em>o</em> or <em>i</em>.",
+                    "https://sodocumentation.net/regex/topic/639/lookahead-and-lookbehind",
                     ["no_more_numbers", "noDigits", "bcdefghiiklmnopr"],
                     ["character_oo", "ggikilap", "numberii1345", "notLetters"],
                     "[^a0-9]*([oi])[^a0-9]*\\1[^a0-9]*"),
                 new Lesson("Real world - Telephone number", // \+{0,1}(\d{3} *\d{3} *|\d{4}) *\d{3} *\d{3}
                     "Try to match every valid telephone numbers.",
+                    null,
                     ["+421901264523", "+421 901 264 523", "0907236542", "0907 236  542"],
                     ["notNumbers", "+france", "21 901 265 563", "09012364565", "+1234567899"],
                     "(\\+{0,1}\\d{3} *\\d{3} *|\\d{4}) *\\d{3} *\\d{3}"),
                 new Lesson("Real world - Email format",
                     "Try to write a regex that verify theses emails and also capture the email domain (aka domain name).",
+                    null,
                     [
                         ["name@email.com", "email.com"],
                         ["n@email.ch", "email.ch"],
@@ -264,6 +289,7 @@
                     "[a-zA-Z](?:[a-zA-Z\\.]+[a-zA-Z])*@((?:\\.?[a-z]+)+\\.[a-z]{2,})"),
                 new Lesson("Real world - HTML Content fetcher",
                     "Try to capture the content of the <em>TAG</em> element.",  // <TAG\b[^>]*>(.*?)<\/TAG>
+                    null,
                     [
                         ["<TAG>content</TAG>", "content"],
                         ["<TAG>one<TAG>two</TAG>one</TAG>", "one<TAG>two</TAG>one"],
@@ -275,6 +301,7 @@
                     "<TAG\\b[^>]*>(.*?)<\\/TAG>"),
                 new Lesson("Real world - HTML Content tag fetcher",
                     "Try to capture element the tag type into group 1 and the content of the tag into group 2.",  // <([a-z][a-z0-9]*)\b[^>]*>(.*?)<\/\1>
+                    null,
                     [
                         ["<p>aaa</p>", "p", "aaa"],
                         ["<p test='kk' >HELLO</p>", "p", "HELLO"],
@@ -290,6 +317,7 @@
 
             var lessonList = document.getElementById("lesson-list");
             var lessonTitle = document.getElementById("lesson-title");
+            var lessonLink = document.getElementById("lesson-link");
             var lessonInput = document.getElementById("lesson-input");
             var lessonInputColorized = document.getElementById("lesson-input-colorized");
             var lessonButtonNext = document.getElementById("lesson-btn-next");
@@ -421,7 +449,8 @@
                 lessonCurrentId = id;
                 lessonMaxId = Math.max(lessonMaxId, lessonCurrentId);
 
-                lessonTitle.innerText = lessons[id].title;
+                lessonTitle.childNodes[0].textContent = lessons[id].title;
+                lessonLink.href = lessons[id].link == null ? "" : lessons[id].link;
                 lessonDescription.innerHTML = lessons[id].description;
 
                 lessonInput.value = isInSolutionMode === false ?
@@ -445,7 +474,7 @@
                 lessonButtonAttribute(lessonButtonFinish, "hidden", !isLast);
 
                 lessonLinkId = document.getElementById("lesson-link-" + id)
-                blockLessonLi = lessonLinkId.closest("#lesson-list > li")
+                blockLessonLi = lessonLinkId.closest("#lesson-list > li.mb-1")
 
                 lessonLinkId.classList.add("active")
                 if (blockLessonLi != null) {
