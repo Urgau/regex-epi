@@ -80,10 +80,10 @@
                 <div class="container mt-5 mb-5">
                     <div class="row">
                         <div class="col">
-                            <h5 class="display-5">Matching cases:</h2>
+                            <h5 class="display-5">Valid cases:</h2>
                         </div>
                         <div class="col">
-                            <h5 class="display-5">Non-matching cases:</h2>
+                            <h5 class="display-5">Invalid cases:</h2>
                         </div>
                     </div>
                     <div class="row">
@@ -481,6 +481,7 @@
                     blockLessonButton = blockLessonLi.children[0]
                     blockLessonDiv = blockLessonLi.children[1]
 
+                    blockLessonButton.setAttribute("aria-expanded", "true")
                     blockLessonButton.classList.remove("collapsed")
                     blockLessonDiv.classList.add("show")
                 }
