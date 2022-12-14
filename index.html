@@ -620,8 +620,14 @@
             lessonInput.onkeyup = function (event) {
                 if (event.keyCode === 13) {
                     event.preventDefault();
-                    if (!lessonButtonNext.hasAttribute("disabled"))
+                    if (lessonInput.value === "sudo") {
+                        isInSolutionMode = true;
+                        displayLesson(lessonCurrentId);
+                        urlSearchParams.set("solution", "true");
+                        window.history.replaceState({}, document.title, "?" + urlSearchParams.toString());
+                    } else if (!lessonButtonNext.hasAttribute("disabled")) {
                         goToNext()
+                    }
                 } else {
                     onTextChange();
                 }
