@@ -487,7 +487,8 @@
 
                 var isLast = (id + 1) === lessons.length;
                 lessonButtonAttribute(lessonButtonPrev, "disabled", id == 0);
-                lessonButtonAttribute(lessonButtonNext, "disabled", true);
+                if (isInSolutionMode === false)
+                    lessonButtonAttribute(lessonButtonNext, "disabled", true);
                 lessonButtonAttribute(lessonButtonNext, "hidden", isLast);
                 lessonButtonAttribute(lessonButtonFinish, "hidden", !isLast);
 
