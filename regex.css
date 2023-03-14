@@ -1,3 +1,16 @@
+.highlight-toolbar {
+    background-color: var(--bs-tertiary-bg);
+    border: solid var(--bs-border-color);
+    border-width: 1px 0;
+}
+
+.bi {
+    width: 1em;
+    height: 1em;
+    vertical-align: -.125em;
+    fill: currentcolor;
+}
+
 @media (min-width: 768px) {
     .rg-layout {
         display: grid;
@@ -10,6 +23,7 @@
 .rg-sidebar {
     grid-area: sidebar;
 }
+
 .rg-main {
     grid-area: main;
 }
@@ -26,47 +40,34 @@
     }
 }
 
-.rg-links a:hover, .rg-links a:focus {
-    color: rgba(0,0,0,0.85);
-    background-color: rgba(121,82,179,0.1);
+.rg-links .active {
+    font-weight: 600;
 }
 
-.rg-links a {
-    padding: .1875rem .5rem;
-    margin-top: .125rem;
-    margin-left: 1.25rem;
-    color: rgba(0,0,0,0.65);
-    text-decoration: none;
-}
-
-.rg-links .btn::before {
-    width: 1.25em;
-    line-height: 0;
-    content: url("data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' width='16' height='16' viewBox='0 0 16 16'%3e%3cpath fill='none' stroke='rgba%280,0,0,.5%29' stroke-linecap='round' stroke-linejoin='round' stroke-width='2' d='M5 14l6-6-6-6'/%3e%3c/svg%3e");
+.rg-links strong svg {
     transition: transform 0.35s ease;
     transform-origin: .5em 50%;
 }
 
-.rg-links .active {
-    font-weight: 600;
-    color: rgba(0,0,0,0.85);
-}
-
-.rg-links .btn[aria-expanded="true"]::before {
+.rg-links strong[aria-expanded="true"] svg {
     transform: rotate(90deg);
 }
 
-.rg-links .btn:hover, .rg-links .btn:focus {
-    color: rgba(0,0,0,0.85);
-    background-color: rgba(121,82,179,0.1);
+.rg-links-link {
+    padding: .1875rem .5rem;
+    margin-top: .125rem;
+    margin-left: 1.125rem;
+    color: var(--bs-body-color);
+    text-decoration: none;
 }
 
-.navbar-dark .navbar-nav .nav-link {
-    color: rgba(255,255,255,0.85);
+.rg-links-link:hover, .rg-links-link:focus, .rg-links-link.active {
+    color: var(--bs-emphasis-color);
+    background-color: #2ecc71;
 }
 
-.navbar-dark .navbar-nav .nav-link:hover {
-    color: rgba(255,255,255);
+[data-bs-theme=dark] .regex {
+    color: black;
 }
 
 #rgNavbar .navbar-nav .nav-link.active {
@@ -80,5 +81,5 @@
 }
 
 a[href=""] {
-  display: none;
+    display: none;
 }
